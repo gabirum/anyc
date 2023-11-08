@@ -1,6 +1,6 @@
 #include "ui.h"
 
-#define GLFW_INCLUDE_VULKAN
+/* #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 #include <vulkan/vulkan.h>
 
@@ -10,9 +10,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
-#include "collection/array_list.h"
-#include "collection/hash_set.h"
 
 #ifdef NDEBUG
 #define ENABLE_VALIDATION_LAYERS false
@@ -25,10 +22,6 @@
 #define VALIDATION_LAYERS_SIZE 1
 
 char const *validation_layers[VALIDATION_LAYERS_SIZE] = {"VK_LAYER_KHRONOS_validation"};
-
-void noop(void *_noop)
-{
-}
 
 VkResult create_debug_utils_messenger_ext(
     VkInstance instance,
@@ -83,7 +76,7 @@ bool check_validation_layer_support()
   return layer_found;
 }
 
-alist_t *get_required_extensions()
+void get_required_extensions()
 {
   uint32_t extension_count = 0;
   char const **extensions = glfwGetRequiredInstanceExtensions(&extension_count);
@@ -94,7 +87,7 @@ alist_t *get_required_extensions()
     return NULL;
   }
 
-  alist_t *list = alist_create_fixed(extension_count + (ENABLE_VALIDATION_LAYERS ? 1 : 0), noop);
+    alist_t *list = alist_create_fixed(extension_count + (ENABLE_VALIDATION_LAYERS ? 1 : 0), noop);
 
   for (uint32_t i = 0; i < extension_count; i++)
     alist_add(list, (void *)extensions[i]);
@@ -397,11 +390,11 @@ void dispose(GLFWwindow *window, VkInstance instance, VkDebugUtilsMessengerEXT d
 
   glfwDestroyWindow(window);
   glfwTerminate();
-}
+} */
 
 bool init_app()
 {
-  // init window
+  /* // init window
   GLFWwindow *window = init_window();
 
   // init vulkan
@@ -430,6 +423,6 @@ bool init_app()
   app_loop(window);
 
   dispose(window, instance, debugger, device);
-
+ */
   return true;
 }
