@@ -2,7 +2,8 @@
 
 int main(int argc, char const *argv[])
 {
-  init_app();
+  if (!init_app())
+    return 1;
 
   return 0;
 }

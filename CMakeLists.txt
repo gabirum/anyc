@@ -6,13 +6,20 @@ enable_testing()
 
 set(CMAKE_C_STANDARD 17)
 
-file(GLOB SOURCES "src/*.c" "src/**/*.c")
+include(FetchContent)
 
-add_executable(anyc ${SOURCES})
+FetchContent_Declare(
+  glfw
+  GIT_REPOSITORY https://github.com/glfw/glfw.git
+  GIT_TAG 3.3.8
+)
+
+FetchContent_MakeAvailable(glfw)
 
 find_package(Vulkan REQUIRED)
-find_package(glfw3 REQUIRED)
 
+file(GLOB SOURCES "src/*.c" "src/**/*.c")
+add_executable(anyc ${SOURCES})
 target_link_libraries(anyc Vulkan::Vulkan glfw)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
